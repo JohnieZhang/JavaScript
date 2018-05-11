@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * hasOwnProperty
+			 * 	作用
+			 * 		判断一个属性是不是自己对象身上的
+			 * 	语法
+			 * 		对象.hasOwnProperty(属性)
+			 * 	参数
+			 * 		要检测的属性
+			 * 	返回值
+			 * 		true			自身属性
+			 * 		false		非自身属性
+			 * 	注意
+			 * 		1、这个方法是Object身上的方法
+			 * 		2、不会顺着原型链往外面去查找属性，只查找自身
+			 */
+			
+			function Person(name){
+				this.name=name;
+			}
+			Person.prototype.country='china';
+			
+			var p1=new Person('kaivon');
+			console.log(p1.name);		//kaivon
+			console.log(p1.country);		//china
+			
+			
+			console.log(p1.hasOwnProperty('name'));			//true
+			console.log(p1.hasOwnProperty('country'));		//false
+			
+			console.log(p1);
+		</script>
+	</body>
+</html>

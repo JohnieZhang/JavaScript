@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p></p>
+		<div id="box">
+			<div class="inner"></div>
+		</div>
+		<div></div>
+		<script>
+			/*
+			 * 获取DOM节点
+			 * 	firstChild
+			 * 	lastChild
+			 * 	nextSibling
+			 * 	previousSibling
+			 * 
+			 * 以上方法都是兼容的，但是取到的结果不一样。IE8以下获取到的是标签节点，标准浏览器获取到的不一定是标签节点
+			 */
+			
+			var box=document.getElementById("box");
+			//alert(box.firstChild.nodeName);
+			//alert(box.lastChild.nodeName);
+			//alert(box.nextSibling.nodeName);
+			alert(box.previousSibling.nodeName);
+		</script>
+	</body>
+</html>

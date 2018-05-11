@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 量词
+			 * 	所有的量词都需要放在{n,m}里面
+			 * 	n,m代表数字
+			 * 
+			 * {n}		重复n次
+			 * {n,}		至少重复n次，最多不限
+			 * {n,m}		至少重复n次，最多重复m次
+			 * 
+			 * +		{1,}		至少重复1次，最多不限
+			 * ?		{0,1}	至少重复0次，最多重复1次
+			 * *		{0,}		至少重复0次，最多不限
+			 */
+			
+			var str='aaabbbaaa';
+			var re=/ab+/g;
+			var re2=/ab?/g;
+			var re3=/ab*/g;
+			
+			console.log(str.match(re));			//["abbb"]
+			console.log(str.match(re2));			//["a", "a", "ab", "a", "a", "a"]
+			console.log(str.match(re3));			//["a", "a", "abbb", "a", "a", "a"]
+			
+			
+			
+			var str1='aaaaaa';
+			var re4=/a{6}/g;
+			var re5=/a{2,}/g;
+			var re6=/a{2,10}/g;
+			
+			console.log(str1.match(re4));		//["aaaaaa"]
+			console.log(str1.match(re5));		//["aaaaaa"]
+			console.log(str1.match(re6));		//["aaaaaa"]
+			
+		</script>
+	</body>
+</html>

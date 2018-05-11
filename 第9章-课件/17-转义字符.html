@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 转义字符
+			 * 	\d			数字
+			 * 	\D			非数字
+			 * 	\s			空格
+			 * 	\S			非空格
+			 * 	\w			数字、字母、下划线
+			 * 	\W			非数字、非字母、非下划线
+			 * 	\b			单词的边界，独立的部分（起始位置、结束位置、空格）
+			 * 	\B			非边界的部分
+			 * 	.			任意一个字符
+			 * 	\.			真正的点
+			 */
+			
+			var str='abc';
+			var str2='a.c';
+			
+			var re=/a.c/g;
+			var re2=/a\.c/g;
+			
+			console.log(str.match(re));			//["abc"]
+			console.log(str2.match(re2));		//["a.c"]
+			
+			
+			
+			var str3='kaivon haitang';
+			var re3=/\bkaivon/;
+			var re4=/kaivon\b/;
+			var re5=/haitang\b/;
+			var re6=/hai\b/;
+			var re7=/hai\B/;
+			
+			console.log(str3.replace(/\b/g,'|'));			//|kaivon| |haitang|
+			console.log(str3.replace(/\B/g,'/'));			//k/a/i/v/o/n h/a/i/t/a/n/g
+			
+			console.log(re3.test(str3));		//true		k前面是字符串的起始位置，所以是独立的
+			console.log(re4.test(str3));		//true		n后面是空格，所以是独立的
+			console.log(re5.test(str3));		//true		g后面是字符串的结束位置，所以是独立的
+			console.log(re6.test(str3));		//false		i后面是字符串的其它字符，不是独立的
+			console.log(re7.test(str3));		//true		i后面是字符串的其它字符，不是独立的，所以是非边界
+			
+			
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+

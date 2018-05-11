@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#date{
+				width: 210px;
+				margin: 30px auto;
+			}
+			li{
+				width: 30px;
+				height: 30px;
+				float: left;
+				list-style: none;
+				text-align: center;
+				line-height: 30px;
+				font-size: 18px;
+				font-weight: bold;
+			}
+			div span{
+				float: left;
+				width: 30px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+			}
+			div span.active{
+				background: #f00;
+				color: #fff;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				var div=document.querySelector("#date div")	;
+				var d=new Date();
+				
+				/*
+				 * 1、这个月有多少天
+				 * 2、这个月的第一天是周几
+				 */
+				
+				//获取某个月的最后一天
+				function getEndDay(year,month){
+					//要想知道这个月有多少天，必需知道年份与月份
+					return new Date(year,month,0).getDate();
+				}
+				//console.log(new Date(2016,7,0))    Sun Jul 31 2016 00:00:00 GMT+0800 (+08).返回的是七月的最后一天
+				//console.log(new Date(2016,5,0))    Tue May 31 2016 00:00:00 GMT+0800 (+08).返回的是五月的最后一天
+				
+				//new Date(2016,5,0)对于这种号数为0的，月份的数字就表示该数字表示的月份，而不是0表示1月。也就是说1就表示一月
+				console.log(new Date(2016,0,0))
+				//console.log(getEndDay(2017,5))   31   为5月份的天数
+				//console.log(getEndDay(2017,6))   30	为6月份的天数
+				//console.log(getEndDay(2017,2))   28   为2月份的天数
+				//new Date(2016,3,0)    //结果为2016年3月4日
+				//获取到某个月第一天是星期几
+				function getWeek(year,month){
+					//要知道年份与朋份，日期设为1
+					return new Date(year,month,1).getDay();
+				}
+				
+				//上个月的最后一天
+				var lastEndDay=getEndDay(d.getFullYear(),d.getMonth());
+				
+				//console.log(getEndDay(2017,6));    31   结果为new Date(2016,7,0);为七月份的总天数         
+				//console.log(lastEndDay)  			 30   测试日：今天是2017年10月29,10月有31天.上个月应该是9月，应该是30天
+				
+				//本月的最后一天
+				var curEndDay=getEndDay(d.getFullYear(),d.getMonth()+1);
+				//console.log(curEndDay)             31   测试日：今天是2017年10月29,10月有31天
+				//这个月的第一天是星期几
+				var week=getWeek(d.getFullYear(),d.getMonth());
+				
+				//这个代表下个月的日期
+				var nextDay=1;
+				var dayStr='';
+				
+				//问题：如果这个月的第一天是周日，那样话，系统的日历会把第一行全部变成灰色。所以这个要单独处理一下
+				//原因：因为周日的话，week的值就为0，那第一个if就不会走。
+				//解决办法：如果week为0的话，把它的值改为7，就会走if条件，那上面会出一行灰色的字
+				week=week==0?7:week;
+				for(var i=0;i<42;i++){
+					if(i<week){
+						/*
+						 * 上个月的日期
+						 */
+						
+						dayStr='<span style="color:#ccc">'+(lastEndDay--)+'</span>'+dayStr;
+					}else if(i>=week+curEndDay){
+						//下个月的日期
+						dayStr+='<span style="color:#ccc">'+(nextDay++)+'</span>';
+					}else{
+						//本月的日期
+						var cl=(i-week+1)==d.getDate()?'active':'';
+						dayStr+='<span class="'+cl+'">'+(i-week+1)+'</span>';
+					}
+				}
+				
+				div.innerHTML=dayStr;
+			};
+		</script>
+	</head>
+	<body>
+		<div id="date">
+			<ul>
+				<li>日</li>
+				<li>一</li>
+				<li>二</li>
+				<li>三</li>
+				<li>四</li>
+				<li>五</li>
+				<li>六</li>
+			</ul>
+			<div>
+			</div>
+		</div>
+	</body>
+</html>

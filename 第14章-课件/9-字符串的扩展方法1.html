@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * includes(s)			字符串里面是否包含某个字符，参数是一个字符
+			 * startsWidth(s)		字符串的开始位置的字符是否是参数的，参数是一个字符
+			 * endsWidth(s)			字符串的结束位置的字符是否是参数的，参数是一个字符
+			 * 
+			 * 以上的几个方法都返回一个布尔值
+			 * 
+			 * repeat(num)			复制字符串，参数为数字，表示复制的次数。参数必需是一个正数，其它的就会报错
+			 */
+			'use strict'
+			var str='kaivon';
+			console.log(str.includes('i'));			//true
+			console.log(str.includes('b'));			//false
+			console.log(str.startsWith('k'));		//true
+			console.log(str.endsWith('n'));			//true
+			
+			console.log(str.repeat(3));				//kaivonkaivonkaivon
+			//console.log(str.repeat(-1));				//报错
+			//console.log(str.repeat(Infinity));		//报错
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 对象的简洁表示法
+			 * 	属性与方法都可以简洁表示
+			 */
+			'use strict'
+			/*function fn(){
+				var x=10;
+				var y=20;
+				function sum(){
+					return x+y;
+				}
+				
+				return {x:x,y:y,sum:sum}
+			}
+			console.log(fn());*/
+			
+			function fn(){
+				var x=10;
+				var y=20;
+				function sum(){
+					return x+y;
+				}
+				
+				return {
+					x,
+					y,
+					sum(){
+						return x+y;
+					}
+				}
+			}
+			console.log(fn());
+			console.log(fn().sum())			//30
+		</script>
+	</body>
+</html>

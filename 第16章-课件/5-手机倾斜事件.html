@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no" />
+		<title></title>
+		<style>
+			#box{
+				width: 200px;
+				height: 200px;
+				background: green;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			/*
+			 * deviceorientation			手机倾斜事件
+			 * 		ev.beta					x轴的倾斜
+			 * 		ev.gamma				y轴的倾斜
+			 * 		ev.alpha				z轴的倾斜
+			 * 
+			 * 注意：这个事件只能放在window身上
+			 */
+			
+			var box=document.getElementById("box");
+			
+			//相当于mousedown
+			window.addEventListener('deviceorientation',function(ev){
+				var motion=ev.accelerationIncludingGravity;
+				//console.log(ev.touches);
+				box.innerHTML=`x轴倾斜:${ev.beta.toFixed(1)}</br>y轴倾斜:${ev.gamma.toFixed(1)}</br>z轴倾斜:${ev.alpha.toFixed(1)}`;
+			});
+		</script>
+	</body>
+</html>

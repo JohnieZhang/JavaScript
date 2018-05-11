@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * replace
+			 * 	作用
+			 * 		替换匹配到的字符串
+			 * 	语法
+			 * 		字符串.replace(字符串或者正则,字符串或者函数);
+			 * 	参数
+			 * 		第一个参数：字符串或者正则
+			 * 		第二个参数：字符串或者函数
+			 * 			函数参数说明
+			 * 				参数1：要匹配的内容，与replace的第一个参数一样
+			 * 				参数2：要匹配的内容对应的位置下标
+			 * 				参数3：原字符串
+			 * 			
+			 * 			
+			 * 			注意：这个函数必需有一个返回值，否则的话它会拿undefined替换掉原来的内容
+			 * 	返回值
+			 * 		替换后的新字符串，原来的字符串没有变化
+			 */
+			
+			
+			var str='kaivonkaivon';
+			var re=/k/g;
+			
+			console.log(str.replace('k','l'),str);		//laivonkaivon kaivonkaivon
+			console.log(str.replace(re,'h'),str);		//haivonhaivon kaivonkaivon
+			
+			var newStr=str.replace('k',function(){
+				return 'f';
+			});
+			console.log(newStr);
+			
+			
+			var re2=/ka/g;
+			var newStr2=str.replace(re2,function($0,$1,$3){
+				console.log($0,$1,$3);
+				
+				var str='';
+				for(var i=0;i<$0.length;i++){
+					str+='*';
+				}
+				
+				return str;
+			});
+			
+			console.log(newStr2);
+		</script>
+	</body>
+</html>

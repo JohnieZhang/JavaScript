@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="box">
+		</div>
+		<!--
+			1、事件必需是驼峰的写法，事件处理函数必需放在组件里，作为它的一个属性
+			2、this.setState用于修改状态值，只要它的值一改变React会自动调用render方法，渲染dom
+		-->
+		<script type="text/babel">
+			var ClickNum=React.createClass({
+				getInitialState:function(){
+					return {
+						clickNum:0
+					}
+				},
+				render:function(){
+					return (
+						<div>
+							<button onClick={this.clickFn}>点一下</button>
+							<p>{this.state.clickNum}</p>
+						</div>
+					)
+				},
+				clickFn:function(){
+					this.setState({
+						clickNum:this.state.clickNum+1
+					});
+				}
+			});
+			
+			ReactDOM.render(
+				<ClickNum/>,
+				document.getElementById('box')
+			);
+		</script>
+	</body>
+</html>

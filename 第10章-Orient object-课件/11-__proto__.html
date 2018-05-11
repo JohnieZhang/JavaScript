@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * __proto__
+			 * 	实例对象身上的属性，每一个实例对象身上都会有这个属性。它的值也是一个对象，它的值就是它对应的构造函数的prototype的值
+			 * 	实例对象.__proto__===构造函数.prototype
+			 * 
+			 * 	对象之所以能够继承原型身上的属性与方法，是因为每个对象身上都有一个__proto__，那__proto__的值指向了构造函数的prototype
+			 * 	
+			 */
+			
+			var arr=[1,2,3];
+			console.log(arr);
+			
+			//arr是一个数组的实例 -> 数组对象原型(Array) -> 对象(Object)
+			
+			
+			function Person(name,age){
+				this.name=name;
+				this.age=age;
+			}
+			
+			Person.prototype.sex='男';
+			Person.prototype.say=function(){
+				console.log('我叫'+this.name);
+			};
+			
+			var p1=new Person('老王',30);		//一个实例
+			var p2=new Person('小王',18);		//一个实例
+			
+			console.log(p1.__proto__===Person.prototype)			//true
+			console.log(typeof prototype);
+		</script>
+	</body>
+</html>

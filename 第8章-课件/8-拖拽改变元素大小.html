@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				border: 10px solid #f00;
+				background: green;
+				cursor: ew-resize;
+				margin: 0 auto
+			}
+			/*
+			 * 鼠标方向
+			 * 左	w-resize
+			 * 上	n-resize
+			 * 右	e-resize
+			 * 下	s-resize
+			 * 
+			 * 左上	nw-resize
+			 * 右上	ne-resize
+			 * 右下	se-resize
+			 * 左下	sw-resize
+			 * 左右	ew-resize
+			 * 上下	ns-resize
+			 */
+		</style>
+		<script>
+			window.onload=function(){
+				var box=document.getElementById("box");
+				
+				
+				box.onmousedown=function(ev){
+					var disX=ev.clientX;
+					var w=box.clientWidth;
+					
+					//判断鼠标在边框身上
+					if(getPos(box).right-ev.clientX<=10){
+						//这个条件成立，说明鼠标现在在最右边的边框上，可以拖动了
+						document.onmousemove=function(ev){
+							var newWidth=ev.clientX-disX+w;
+							
+							if(newWidth<100){
+								newWidth=100;
+							}
+							
+							box.style.width=newWidth+'px';
+						};
+						
+						document.onmouseup=function(){
+							document.onmousemove=null;
+						};
+					}
+				};
+				
+				function getPos(obj){
+					return obj.getBoundingClientRect();
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+</html>

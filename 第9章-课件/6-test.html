@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * test
+			 * 	作用
+			 * 		查看正则表达式与指定的字符串是否匹配
+			 * 	语法
+			 * 		正则.test(字符串);
+			 * 	参数
+			 * 		要匹配的字符串
+			 * 	返回值
+			 * 		true		匹配成功
+			 * 		false	匹配不成功
+			 */
+			
+			var str='kaivon123kaivon';
+			
+			var re1=/k/;
+			console.log(re1.test(str));		//true
+			
+			var re2=/ka/;
+			console.log(re2.test(str));		//true
+			
+			var re3=/kh/;
+			console.log(re3.test(str));		//false
+			
+			
+			var re4=/\d/;
+			
+			if(re4.test(str)){
+				console.log('有数字');
+			}else{
+				console.log('没有数字');
+			}
+		</script>
+	</body>
+</html>

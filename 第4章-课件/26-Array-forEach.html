@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * forEach
+			 * 	作用
+			 * 		遍历数组
+			 * 	语法
+			 * 		数组.forEach(function(currentValue,index,array){
+			 * 			//每次循环完都会执行这里的代码
+			 * 		})
+			 * 	参数
+			 * 		forEach里放的参数是一个函数
+			 * 		函数里的参数
+			 * 			currentValue			当前数组中的某个数据
+			 * 			index				当前数据的索引
+			 * 			array				数组本身
+			 */
+			
+			var color=['red','green','blue','pink'];
+			
+			color.forEach(function(item,index,array){
+				//console.log(item,index,array)
+				//console.log(item);//red green blue pink
+				//console.log(index);//0 1 2 3
+				//console.log(array);//["red", "green", "blue", "pink"](四个相同的数组)
+				//console.log(array[index]);//red green blue pink
+			});
+			 
+			var patternl=/at/g;
+			
+		</script>
+	</body>
+</html>

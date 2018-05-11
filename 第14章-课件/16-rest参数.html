@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script>
+			/*
+			 * rest参数			...变量名
+			 * 	rest参数是一个数组，它的后面不能再有参数，不然会报错
+			 * 
+			 * 	扩展方法	...
+			 * 		1、三个点后面是一个类数组，它的作用是把这个类数组转成真正的数组，但是它需要放到一对中括号里面
+			 * 		2、三个点后面是一个真正的数组，它的作用是把数组转成一个普通的集合数据，不需要加中括号的
+			 */
+			'use strict'
+			function fn(a,b,c,...values){
+				console.log(values);
+			}
+			fn(1,2,3,4,5,6,78);
+			
+			
+			function fn2(...values/*,a*/){
+				let sum=0;
+				
+				for(var val of values){
+					sum+=val;
+				}
+				//console.log(a);		//报错
+				console.log(sum);
+			}
+			fn2(1,2,3,4,5);		//15
+			
+			//三个点的用法
+			var arr1=[12,34,5,28,97];
+			var divs=document.querySelectorAll("div");
+			console.log([...divs]);		//注意：类数组以及三个点需要放在一对中括号里面
+			console.log(...arr1);			//12 34 5 28 97，注意把数组转成集合数据，不用加中括号
+			
+			//作用1：替代数组的apply方法
+			console.log(Math.max(12,34,5,28,97));		//97
+			
+			var arr2=[12,34,5,28,97];
+			console.log(Math.max.apply(null,arr2));		//97
+			
+			console.log(Math.max(...arr2));				//97
+			
+			
+			//作用2：替代concat
+			var arr3=[1,2,3];
+			var arr4=['a','b','c'];
+			//console.log(arr3.concat(arr4));		//[1, 2, 3, "a", "b", "c"]
+			
+			arr3.push(...arr4);
+			console.log(arr3);		//[1, 2, 3, "a", "b", "c"]
+			
+			
+			//作用3：把字符串转成数组
+			var str='kaivon';
+			console.log([...str]);	//["k", "a", "i", "v", "o", "n"]
+		</script>
+	</body>
+</html>

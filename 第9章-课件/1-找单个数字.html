@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 字符串的方法
+			 * 	indexOf()			通过字符找下标
+			 * 	substring()			截取字符串
+			 * 	charAt()				通过下标找字符
+			 * 	split()				分隔字符串
+			 */
+			
+			var str='sdk2f4535jl56673ks67df78787asdflkj123';
+			var arr=[];
+			
+			for(var i=0;i<str.length;i++){
+				if(!isNaN(str.charAt(i))){
+					arr.push(str.charAt(i));
+				}
+			}
+			
+			console.log(arr);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<!--
+			JSX语法	JavaScript XML
+				概念
+					React的语法，它允许HTML与JavaScript混写，在html里可以写js
+					React不使用JSX的语法也可以工作，使用的话会提高组件的可读性，推荐使用JSX
+				
+				特点
+					1、遇到尖括号开头的解析成html。遇到大括号开头的解析成JavaScript
+						注意：大括号要解析成js代码，所以里面不要有分号
+					2、可以在模板里插入变量，如果这个变量是个数组，则会自己把数组里所有数据全部显示
+		-->
+		<script type="text/babel">
+			var colors=['red','green','blue'];
+			
+			/*ReactDOM.render(
+				<ul>
+					{
+						colors.map(function(value,index){
+							return <li>第{index}个是:{value}</li>
+						})
+					}
+				</ul>,
+				document.getElementById('box')
+			);*/
+			
+			var arr=[
+				<li>kaivon</li>,
+				<li>陈学辉</li>,
+				<li>356985332</li>
+			];
+			
+			ReactDOM.render(
+				<ul>{arr}</ul>,
+				document.getElementById('box')
+			);
+		</script>
+	</body>
+</html>

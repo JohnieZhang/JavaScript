@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * []		匹配中括号里的任意一个字符，只代表一个字符
+			 * [1-9]		区间的写法，表示从1到9之间的任意的一个字符
+			 * [a-z]		a-z之间的任意一个小写字母
+			 * [A-Z]		A-Z之间的任意一个大写字母
+			 * ^			排除掉某个字符
+			 */
+			
+			var str='adb12k8j3234jks7df9h234';
+			var re=/[123457]/g;				//匹配12345的任意一个字符
+			console.log(str.match(re));		//["1", "2", "3", "2", "3", "4", "2", "3", "4"]
+			
+			var str2='a1ba4ba5ba7ba8ba9ba0b';
+			var re2=/a[1234]b/g;					//匹配a开始b结束，中间是1234中的任意一个数字
+			console.log(str2.match(re2));		//["a1b", "a4b"]
+			
+			var re3=/a[123456789]b/g;			////匹配a开始b结束，中间是123456789中的任意一个数字
+			console.log(str2.match(re3));		//["a1b", "a4b", "a5b", "a7b", "a8b", "a9b"]
+			
+			var re4=/a[1-9]b/g;
+			console.log(str2.match(re4));		//["a1b", "a4b", "a5b", "a7b", "a8b", "a9b"]
+			
+			var re5=/[a-z]/g;					//匹配a开始z结束之间的所有小写字母
+			console.log(str2.match(re5));		//["a", "b", "a", "b", "a", "b", "a", "b", "a", "b", "a", "b"]
+			
+			var re6=/a[^1-9]b/g;					//匹配a开始b结束，中间是数字但是不包括1-9的任意一个数字
+			console.log(str2.match(re6));		//["a0b"]
+			
+		</script>
+	</body>
+</html>

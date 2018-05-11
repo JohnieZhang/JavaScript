@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<!--
+			props	它身上放的就是我们传进来的属性
+					插入组件的时候可以像html标签添加属性的方式一样，给组件传递数据
+				
+		-->
+		<script type="text/babel">
+			var person={
+				name:'kaivon',
+				age:18,
+				sex:'男'
+			};
+			
+			var Person=React.createClass({
+				render:function(){
+					return (
+						<div>
+							<h1>{this.props.name}</h1>
+							<h2>{this.props.age}</h2>
+							<h3>{this.props.sex}</h3>
+						</div>
+					)
+				}
+			});
+			
+			//数据是对象的形式的话，可以借助es6里的扩展运算符
+			ReactDOM.render(
+				<Person {...person}/>,		//这里可以写单标签，也可以写双标签
+				document.getElementById('box')
+			);
+		</script>
+	</body>
+</html>

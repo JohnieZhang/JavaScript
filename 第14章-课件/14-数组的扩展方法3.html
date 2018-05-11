@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * for in		循环，能够直接读取键名
+			 * for of		循环，能够直接读取键值
+			 * 				它不光可以遍历数组或者对象，只要有遍历接口的对象都可以用它
+			 * 
+			 * keys()		存储了数组的所有键名
+			 * values()		存储了数组的所有键值
+			 * entries()		存储了数组的所有键值对
+			 * 
+			 */
+			
+			'use strict'
+			var color=['red','green','blue','yellow'];
+			
+			//for in
+			for(var attr in color){
+				console.log(attr);	//0 1 2 3
+			}
+			
+			//for of
+			for(var value of color){
+				console.log(value);	//red green blue yellow
+			}
+			
+			//字符串也可以使用for of
+			var str='kaivon';
+			for(var value of str){
+				console.log(value);		//k a i v o n
+			}
+			
+			
+			//遍历keys
+			for(var key of color.keys()){
+				console.log(key);		//0 1 2 3
+			}
+			
+			//遍历values
+			/*for(var value of color.values()){
+				console.log(value);		//red green blue yellow	提示一下，chrom还不支持
+			}*/
+			
+			//遍历entries
+			for(let [key,value] of color.entries()){
+				console.log(key,value);	//0 "red"	 1 "green"	2 "blue"		3 "yellow"
+			}
+			
+		</script>
+	</body>
+</html>

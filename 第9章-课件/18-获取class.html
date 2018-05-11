@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 
+			 */
+			/*function getByClass(parent,cla){
+				var arr=[];
+				var eles=parent.getElementsByTagName('*');
+				
+				for(var i=0;i<eles.length;i++){
+					if(eles[i].className==cla){
+						arr.push(eles[i]);
+					}
+				}
+				
+				return arr;
+			}*/
+			
+			
+			
+			//用正则的方式封装函数
+			function getByClass(parent,cla){
+				var arr=[];
+				var eles=parent.getElementsByTagName('*');
+				
+				//var re=/cla/;		//这么写不可以，正则会把cla做为一个字符串去匹配
+				
+				/*
+				 * 如果正则里需要接收变量，就需要用正则对象的方法去创建正则
+				 */
+				
+				var re=new RegExp('\\b'+cla+'\\b');
+				
+				for(var i=0;i<eles.length;i++){
+					if(re.test(eles[i].className)){
+						arr.push(eles[i]);
+					}
+				}
+				
+				return arr;
+			}
+			
+			
+			window.onload=function(){
+				var list=document.getElementById("list");
+				
+				var boxs=getByClass(list,'box');
+				
+				for(var i=0;i<boxs.length;i++){
+					boxs[i].style.background='red';
+				}
+			};
+		</script>
+		<ul id="list">
+			<li class="box"></li>
+			<li class=""></li>
+			<li class="box color"></li>
+			<li class="colorbox"></li>
+		</ul>
+	</body>
+</html>

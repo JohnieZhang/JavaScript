@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background: green;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			img{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				var box=document.getElementById("box");
+				var img=document.getElementById("img");
+				
+				drag(img);
+				drag(box);
+				
+				function drag(obj){
+					obj.onmousedown=function(ev){
+						var disX=ev.clientX-obj.offsetLeft;
+						var disY=ev.clientY-obj.offsetTop;
+						
+						document.onmousemove=function(ev){
+							var l=ev.clientX-disX;
+							var t=ev.clientY-disY;
+							
+							if(l<0){
+								l=0;
+							}else if(l>document.documentElement.clientWidth-obj.offsetWidth){
+								l=document.documentElement.clientWidth-obj.offsetWidth;
+							}
+							
+							if(t<0){
+								t=0;
+							}else if(t>document.documentElement.clientHeight-obj.offsetHeight){
+								t=document.documentElement.clientHeight-obj.offsetHeight;
+							}
+							
+							
+							
+							obj.style.left=l+'px';
+							obj.style.top=t+'px';
+						};
+						
+						document.onmouseup=function(){
+							document.onmousemove=null;
+						};
+						
+						return false;
+					};
+				}
+				
+				
+				//鼠标按下
+				
+				
+			};
+		</script>
+	</head>
+	<body>
+		kaivon
+		<div id="box"></div>
+		<img src="images/logo.jpg" id="img"/>
+	</body>
+</html>

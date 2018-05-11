@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				border: 1px solid #f00;
+				position: absolute;
+				cursor: default;
+			}
+		</style>
+		<script>
+			window.onload=function(){
+				document.onmousedown=function(ev){
+					//存一下鼠标的起点
+					var disX=ev.clientX;
+					var disY=ev.clientY;
+					
+					var div=document.createElement("div");
+					
+					//设置div的起点与鼠标按下的点一样
+					div.style.left=disX+'px';
+					div.style.top=disY+'px';
+					
+					document.body.appendChild(div);
+					
+					document.onmousemove=function(ev){
+						//左上
+						/*if(ev.clientX<disX && ev.clientY<disY){
+							div.style.width=disX-ev.clientX+'px';
+							div.style.height=disY-ev.clientY+'px';
+							div.style.left=ev.clientX+'px';
+							div.style.top=ev.clientY+'px';
+						}
+						
+						//左下
+						if(ev.clientX<disX && ev.clientY>disY){
+							div.style.width=disX-ev.clientX+'px';
+							div.style.height=ev.clientY-disY+'px';
+							div.style.left=ev.clientX+'px';
+							div.style.top=disY+'px';
+						}
+						
+						//右下
+						if(ev.clientX>disX && ev.clientY>disY){
+							div.style.width=ev.clientX-disX+'px';
+							div.style.height=ev.clientY-disY+'px';
+							div.style.left=disX+'px';
+							div.style.top=disY+'px';
+						}
+						
+						
+						//右上
+						if(ev.clientX>disX && ev.clientY<disY){
+							div.style.width=ev.clientX-disX+'px';
+							div.style.height=disY-ev.clientY+'px';
+							div.style.left=disX+'px';
+							div.style.top=ev.clientY+'px';
+						}*/
+						
+						
+						div.style.width=Math.abs(disX-ev.clientX)+'px';
+						div.style.height=Math.abs(disY-ev.clientY)+'px';
+						div.style.left=Math.min(disX,ev.clientX)+'px';
+						div.style.top=Math.min(disY,ev.clientY)+'px';
+					};
+					
+					document.onmouseup=function(){
+						document.onmousemove=null;
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

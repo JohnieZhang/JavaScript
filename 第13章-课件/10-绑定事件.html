@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			/*
+			 * addEventListener
+			 * 	IE9以及以上支持
+			 * 	
+			 * attachEvent
+			 * 	IE678支持，但是要注意它的事件名字参数要加on
+			 */
+			var box=document.getElementById("box");
+			/*box.addEventListener('click',function(){
+				alert(1);
+			});*/
+			
+			/*box.attachEvent('onclick',function(){
+				alert(1);
+			});*/
+			
+			function addEvent(obj,type,fn){
+				if(obj.addEventListener){
+					obj.addEventListener(type,fn);
+				}else{
+					obj.attachEvent('on'+type,fn);
+				}
+			};
+			function removeEvent(obj,type,fn){
+				if(obj.removeEventListener){
+					obj.removeEventListener(type,fn);
+				}else{
+					obj.detachEvent('on'+type,fn);
+				}
+			}
+			addEvent(box,'click',alertBox);
+			
+			
+			function alertBox(){
+				alert(1);
+				
+				removeEvent(box,'click',alertBox);
+			}
+		</script>
+	</body>
+</html>

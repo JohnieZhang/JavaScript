@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 转义字符
+			 * 	\d			数字
+			 * 	\D			非数字
+			 * 	\s			空格
+			 * 	\S			非空格
+			 * 	\w			数字、字母、下划线
+			 * 	\W			非数字、非字母、非下划线
+			 * 	\b			单词的边界，独立的部分（起始位置、结束位置、空格）
+			 * 	\B			非边界的部分
+			 * 	.			任意一个字符
+			 * 	\.			真正的点
+			 * 	\1			重复的子项，数字可以累加与子项对应			
+			 */
+			
+			var str='abca';
+			var re=/(a)(b)(c)\1/;
+			var re2=/(a)(b)(c)(\2)/;
+			
+			console.log(re.test(str));			//true
+			console.log(re2.test(str));			//false
+			
+			var re3=/\w\w/;		//即使这个字符串里的两个字符不一样，也能够匹配成功
+			var re4=/(\w)\1/;	//只当字符串里的两个字符一样的话，这个正则才能匹配成功
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+

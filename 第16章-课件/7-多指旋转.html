@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no" />
+		<title></title>
+		<style>
+			#box{
+				width: 200px;
+				height: 200px;
+				background: green;
+				color: #fff;
+				font-size: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">kaivon</div>
+		<script>
+			/*
+			 * gesturestart				两个或者两个以上手指按下
+			 * gesturechange			两个或者两个以上手指变换
+			 * gestureend				两个或者两个以上手指离开
+			 * 
+			 * ev.rotation				这个值是start与move的旋转度数的差值
+			 */
+			
+			//一定要阻止浏览器的默认行为
+			document.addEventListener('touchstart',function(ev){
+				ev.preventDefault();
+			});
+			document.addEventListener('touchmove',function(ev){
+				ev.preventDefault();
+			});
+			
+			var box=document.getElementById("box");
+			
+			
+			var startDeg=0;		//上次旋转后的角度
+			//两个或者两个以上手指按下
+			box.addEventListener('gesturestart',function(){
+				this.style.background='blue';
+				
+				//rotate(90deg)
+				if(this.style.transform){
+					startDeg=parseFloat(this.style.transform.split('(')[1]);
+				}
+			});
+			
+			//两个或者两个以上手指变换
+			box.addEventListener('gesturechange',function(ev){
+				/*this.style.background='black';
+				this.innerHTML=ev.rotation;*/
+				
+				this.style.transform='rotate('+(ev.rotation+startDeg)+'deg)';
+			});
+			
+			//两个或者两个以上手指变换
+			box.addEventListener('gestureend',function(){
+				this.style.background='green';
+			});
+		</script>
+	</body>
+</html>

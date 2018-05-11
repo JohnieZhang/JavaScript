@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 分组		()
+			 * 子项		放在小括号里的内容可以看做是一个子项，每一个小括号都可以看做一个子项
+			 * 
+			 * replace方法匹配子项
+			 * 		函数里的参数从第二个开始，就对应每一个子项
+			 * 
+			 * match方法匹配子项
+			 * 	没有g		返回的数组里有子项
+			 * 	有g			返回的数组里没有子项
+			 */
+			
+			var str='1970-2-1';
+			var re=/\d+-/g;
+			var re1=/\d-+/g;
+			var re2=/(\d-)+/g;		//这个加号是针对前面小括号里的整体内容
+			
+			console.log(str.match(re));		//["1970-", "2-"]
+			console.log(str.match(re1));		//["0-", "2-"]
+			console.log(str.match(re2));		//["0-2-"]
+			
+			//replace方法匹配子项
+			var re3=/(\d+)(-)/g;
+			var str1=str.replace(re3,function($0,$1,$2){
+				//console.log($0);
+				//console.log($1);		//1970	2
+				//console.log($2);		//-	-
+				
+				
+				return $1+'/';
+			});
+			console.log(str1);		//1970/2/1
+			
+			
+			//match方法匹配子项
+			var str2='kai';
+			var re4=/(k)(a)(i)/;
+			var re5=/(k)(a)(i)/g;
+			
+			console.log(str2.match(re4));		//["kai", "k", "a", "i"]
+			console.log(str2.match(re5));		//["kai"]
+			
+		</script>
+	</body>
+</html>

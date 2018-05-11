@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * Map		数据结构，类似于对象。键值对的集合。所有的数据都是唯一的，不会重复。每条数据都需要放在一个数组中，它本身就是一个构造函数
+			 * 	size			数据的长度
+			 * 	set()		添加一条数据
+			 * 	delete()		删除一条数据
+			 * 	get()		获取一条数据
+			 * 	has()		查找某条数据，返回一个布尔值
+			 * 	clear()		删除所有数据
+			 * 
+			 */
+			'use strict'
+			var map=new Map([['name','kaivon'],['age',18],['age',20]]);
+			map.set('sex','男');
+			map.delete('sex');
+			console.log(map.get('name'));		//kaivon
+			console.log(map.has('age'));			//true
+			map.clear();
+			console.log(map,map.size);			//Map {"name" => "kaivon", "age" => 20}
+			
+			var map2=new Map([['name','kaivon'],['age',20]]);
+			//遍历数据
+			for(let [key,value] of map2.entries()){
+				console.log(key,value);
+			}
+		</script>
+	</body>
+</html>

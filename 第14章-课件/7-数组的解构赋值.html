@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 解构赋值
+			 * 	按照一定的模式，从数组或者对象中把数据拿出来，对变量进行赋值
+			 * 
+			 * 	数组解构赋值
+			 * 		等号左边与右边必需都是数组，数组的解构赋值要一一对应。如果对应不上的话就是undefined
+			 * 
+			 * 	对象解构赋值
+			 * 
+			 */
+			'use strict'
+			/*var a=1;
+			var b=2;*/
+			
+			var [a,b,c]=[1,2,3];
+			console.log(a,b,c);
+			
+			let [x,,y,z]=[1,2,3];
+			console.log(x,y,z);		//1 3 undefined
+			
+			 var [a,[b,c]]=[1,[2,3]];
+			 console.log(a,b,c);		//1 2 3
+			 
+			 //可以用来调换两个值
+			 var n1=10;
+			 var n2=15;
+			 
+			 var [n1,n2]=[n2,n1];
+			 console.log(n1,n2);		//15 10
+			 
+			 
+			 //也可以用来取函数的返回值
+			 function fn(){
+			 	return ['red','green','blue'];
+			 }
+			 var [d,e,f]=fn();
+			 
+			 console.log(e);		//green
+		</script>
+	</body>
+</html>

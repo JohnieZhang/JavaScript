@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 730px;
+				height: 454px;
+				margin: 30px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			#box ul{
+				position: absolute;
+				left: 0;
+			}
+			#box li{
+				list-style: none;
+				float: left;
+			}
+			#box div{
+				height: 70px;
+				width: 100%;
+				background: rgba(0,0,0,0.6);
+				position: absolute;
+				bottom: 0;
+				font-family: "微软雅黑";
+				color: #fff;
+				text-indent: 20px;
+			}
+			#box div h3{
+				line-height: 40px;
+			}
+		</style>
+		<script src="js/move.js"></script>
+		<script>
+			/*
+			 * 写面向对象的原则
+			 * 	1、所有的变量都做属性
+			 * 		属性需要写在构造函数里
+			 * 	2、所有的函数都要做为方法
+			 * 		方法添加到构造函数的原型
+			 * 	3、this指向，在事件或者定时器里是访问不到真正的this，需要在外面存一下this
+			 */
+			
+			function Pic(obj){//由于轮播图用到的地方比较多，所以使用父级obj来区分谁轮播
+				this.box=obj;
+				this.ul=this.box.querySelector('ul');
+				this.div=this.box.querySelector('div');
+				this.n=0;
+				this.timer=null;
+				
+				this.textArr=[
+					{"title":'盛惠而来',"content":'京东携手天天果园百万车厘子，29元包邮畅想'},
+					{"title":'荣耀7',"content":'有点不同，0元预约，免费抽奖1999元'},
+					{"title":'老板购物节',"content":'2015我要更省，老板XX购物节精彩来袭'},
+					{"title":'送钱送美酒',"content":'大盘让我心碎，我在京东买醉送钱送美酒'},
+					{"title":'玩转暑假',"content":'追风少年，联想拯救者全国独家抢购'},
+					{"title":'游园门票',"content":'奔跑吧周末游游园门票一元秒杀'}
+				];
+			}
+			//初始化函数init，页面的默认界面（所有的变量都要加this）
+			Pic.prototype.init=function(){
+				this.ul.innerHTML=this.ul.innerHTML+this.ul.innerHTML;
+				
+				this.lis=this.ul.querySelectorAll('li');
+				this.w=parseInt(getComputedStyle(this.lis[0]).width);
+				this.ul.style.width=this.lis.length*this.w+'px';
+				
+				this.div.innerHTML='<h3>'+this.textArr[this.n].title+'</h3><p>'+this.textArr[this.n].content+'</p>';
+				
+				var This=this;
+				this.timer=setInterval(function(){
+					This.show();	//原型上的方法只能用构造函数里的this去调用	
+					// console.log(this);//window					
+				},2000);
+
+				// console.log(this.show);
+				/*
+				this.timer=setInterval(this.show(),2000);
+				这样写是不可以的，因为在定时器里使用this.show()调用show方法，定时器里的this默认是指向window的，所以此时函数内部的this指向为window。所以应该在定时器的外部定义一个变量来接受真正的this，然后通过定时器里的回调函数来执行调用	
+
+				*/
+			};
+			
+			Pic.prototype.show=function(){
+				this.n++;
+				var This=this;
+				//move是引用的一个运动函数，所以不用加this
+				move(this.div,{"bottom":-70},500,'linear',function(){
+					move(This.ul,{"left":-730*This.n},1000,'linear',function(){
+					//此处的函数调用时没有主语，此时是指向window的，所以this需要在外面存储下
+						if(This.n==This.lis.length/2){
+							This.ul.style.left=0;
+							This.n=0;
+						}
+						
+						This.div.innerHTML='<h3>'+This.textArr[This.n].title+'</h3><p>'+This.textArr[This.n].content+'</p>';
+						move(This.div,{"bottom":0},500,'linear');
+					});
+				});
+			}
+			
+			Pic.prototype.over=function(){
+				clearInterval(this.timer);
+			}
+			Pic.prototype.out=function(){
+				var This=this;
+				this.timer=setInterval(function(){
+					This.show();
+				},2000);
+			}
+			
+			//生成实例
+			window.onload=function(){
+				var box=document.getElementById("box");
+				var pic1=new Pic(box);//new一个实例
+				pic1.init();//调用初始化init函数，使默认页面开始滚动
+				
+				//鼠标放在图片上时调用over事件
+				box.onmouseover=function(){
+					pic1.over();
+				}
+				
+				box.onmouseout=function(){
+					pic1.out();
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li><img src="img/1.jpg" alt="" /></li>
+				<li><img src="img/2.jpg" alt="" /></li>
+				<li><img src="img/3.jpg" alt="" /></li>
+				<li><img src="img/4.jpg" alt="" /></li>
+				<li><img src="img/5.jpg" alt="" /></li>
+				<li><img src="img/6.jpg" alt="" /></li>
+			</ul>
+			<div>
+				<h3></h3>
+				<p></p>
+			</div>
+		</div>
+	</body>
+</html>

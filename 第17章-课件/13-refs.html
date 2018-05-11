@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="box">
+		</div>
+		<!--
+			refs			获取原生dom元素
+				1、在目标dom元素上加上这个属性(ref)
+		-->
+		<script type="text/babel">
+			var Input=React.createClass({
+				render:function(){
+					return (
+						<div>
+							<input type="text" ref="target" />
+							<input type="button" value="点击让输入框有焦点" onClick={this.getFoucus} />
+						</div>
+					)
+				},
+				getFoucus:function(){
+					this.refs.target.focus();
+				}
+			});
+			
+			ReactDOM.render(<Input/>,document.getElementById('box'));
+		</script>
+	</body>
+</html>

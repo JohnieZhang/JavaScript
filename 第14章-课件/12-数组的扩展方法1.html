@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script>
+			/*
+			 * Array.from()			把类数组转成真正的数组
+			 * 	任何有length属性的对象都可以用这个方法转真正数组
+			 * 	
+			 * [...类数组]			它是一个扩展方法，在这里可以把一个类数组转成一下真正的数组
+			 */
+			
+			'use strict'
+			var lis=document.querySelectorAll("li");
+			//console.log(lis);
+			//var newLis=[].slice.call(lis);
+			var newLis=Array.from(lis);
+			console.log(newLis);			//[li, li, li, li, li]
+			
+			var str='kaivon';
+			var newStr=Array.from(str);
+			console.log(newStr);			//["k", "a", "i", "v", "o", "n"]
+			
+			var newLis2=[...lis];
+			console.log(newLis2);		//[li, li, li, li, li]
+			
+			//对象身上只要有length属性就可以调用Array.from()把对象转成数组,对象中的key必需是从0开始的数字才能转
+			var obj={
+				0:'red',
+				1:'green',
+				2:'blue',
+				3:'yellow',
+				length:4
+			};
+			
+			var obj2={
+				1:'red',
+				2:'green',
+				3:'blue',
+				4:'yellow',
+				length:4
+			};
+			
+			//console.log(obj);
+			console.log(Array.from(obj));
+			console.log(Array.from(obj2));
+		</script>
+	</body>
+</html>

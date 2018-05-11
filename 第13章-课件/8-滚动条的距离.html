@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body style="height: 2000px;">
+		<script>
+			/*
+			 * 滚动条的距离
+			 * 	window.pageXOffset
+			 * 	window.pageYOffset
+			 * 	
+			 * 	IE9以及以上支持
+			 * 
+			 * scrollTop
+			 * 	document.documentElement.scrollTop			其它的浏览器从document身上去获取
+			 * 	document.body.scrollTop						chrom从body身上获取
+			 * 
+			 */
+			document.onclick=function(){
+				//alert(window.pageYOffset);
+				var top=document.documentElement.scrollTop||document.body.scrollTop;
+				alert(top)
+			}
+		</script>
+	</body>
+</html>

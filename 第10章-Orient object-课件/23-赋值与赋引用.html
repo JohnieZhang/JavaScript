@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var str1='kaivon';
+			var str2='kaivon';
+			console.log(str1==str2);			//true
+			
+			
+			var obj1={a:10,b:20};
+			var obj2={a:10,b:20};
+			console.log(obj1==obj2);			//false
+			
+			
+			//基本数据类型的赋值，就是把值复制了一下
+			var n1=2;
+			var n2=n1+5;
+			console.log(n1,n2);		//2 7
+			
+			
+			//复杂数据类型的赋值，它不光把值复制了一下，并且还复制了一下在内存中的引用地址
+			var arr1=[1,2,3];
+			var arr2=arr1;
+			arr2.push(4);			//arr2与arr1的引用地址是相同的，所以无论修改哪个，两个都会变
+			console.log(arr2);		//[1, 2, 3, 4]
+			console.log(arr1);		//[1, 2, 3, 4]
+			
+			
+			var arr3=[4,5,6];
+			var arr4=arr3;
+			arr4=[7,8,9];			//arr4又赋值了，所以就又开了一块内存，引用地址就不一样了
+			console.log(arr4);		//[7, 8, 9]
+			console.log(arr3);		//[4, 5, 6]
+			
+			
+			//基本数据类型的比较，比较的是值相等就相等
+			var n3=10;
+			var n4=10;
+			console.log(n3==n4);		//true
+			
+			
+			//基本数据类型的比较，比较的不光是值，并且还要比较引用地址，如果两个都相等，那他们就相等
+			var obj3={a:10,b:20};
+			var obj4=obj3;
+			console.log(obj3==obj4);		//true
+		</script>
+	</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#div1{
+				background: red;
+			}
+			#div2{
+				background: green;
+				left: 100px;
+			}
+			#div3{
+				background: blue;
+				left: 200px;
+			}
+		</style>
+		<script>
+			/*
+			 * 1、在哪里改颜色
+			 * 		在初始化函数里修改
+			 * 2、怎么改颜色
+			 * 		把颜色放在一个函数里，通过传参的形式传到初始化的函数里，在用到的地方去调用一下这个函数就可以了
+			 * 
+			 */
+			
+			window.onload=function(){
+				var div1=new Drag();
+				div1.init({
+					id:'div1',
+					downFn:function(){
+						this.obj.style.background='yellow';
+					}
+				});
+			};
+			
+			function Drag(obj){
+				this.disX=0;
+				this.disY=0;
+				
+				//这是默认参数，下面的程序都要用这里的参数
+				this.settings={
+					id:'',		//这个属性是必传的
+					downFn:function(){},	
+					moveFn:function(){},
+					upFn:function(){}
+				};
+			}
+			
+			//初始化函数
+			Drag.prototype.init=function(opt){
+				//在初始化函数里面，拿用户传进来的参数去覆盖默认的参数，并且这个代码要放在init函数的最上面
+				for(var attr in opt){
+					if(this.settings.hasOwnProperty(attr)){
+						//如果默认参数里有这个属性的话，才拿用户传入的参数去覆盖
+						this.settings[attr]=opt[attr];
+					}
+				}
+				
+				this.obj=document.getElementById(this.settings.id);
+				
+				var This=this;
+				this.obj.onmousedown=function(ev){
+					This.down(ev);
+				};
+			};
+			
+			Drag.prototype.down=function(ev){
+				this.settings.downFn.call(this);
+				
+				this.disX=ev.clientX-this.obj.offsetLeft;
+				this.disY=ev.clientY-this.obj.offsetTop;
+				
+				var This=this;
+				
+				document.onmousemove=function(ev){
+					This.move(ev);
+				};
+				document.onmouseup=function(){
+					This.up();
+				};
+			};
+			
+			Drag.prototype.move=function(ev){
+				this.settings.moveFn.call(this);
+				
+				this.obj.style.left=ev.clientX-this.disX+'px';
+				this.obj.style.top=ev.clientY-this.disY+'px';
+			};
+			
+			Drag.prototype.up=function(){
+				this.settings.upFn.call(this);
+				
+				document.onmousemove=null;
+			};
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+	</body>
+</html>

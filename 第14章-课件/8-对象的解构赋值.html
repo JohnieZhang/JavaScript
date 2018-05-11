@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 解构赋值
+			 * 	按照一定的模式，从数组或者对象中把数据拿出来，对变量进行赋值
+			 * 
+			 * 	数组解构赋值
+			 * 		等号左边与右边必需都是数组，数组的解构赋值要一一对应。如果对应不上的话就是undefined
+			 * 
+			 * 	对象解构赋值
+			 * 		等号左边与右边必需都是对象，名字要一一对应，顺序不需要对应，对应不上的值结果是undefined
+			 * 
+			 */
+			'use strict'
+			
+			var obj={
+				name:'kaivon',
+				QQ:356985332,
+				language:['css','html','js'],
+				work:function(){
+					console.log('js');
+				}
+			};
+			
+			var {name,work,QQ,age}=obj;
+			console.log(name,work,QQ,age);
+			
+			
+			//可以用它来取一个对象的值
+			function fn(){
+				return {
+					c1:'red',
+					c2:'green',
+					c3:'blue'
+				}
+			}
+			
+			var {c1,c2,c3}=fn();
+			
+			console.log(c2);		//green
+		</script>
+	</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#div1{
+				background: red;
+			}
+			#div2{
+				background: green;
+				left: 100px;
+			}
+			#div3{
+				background: blue;
+				left: 200px;
+			}
+		</style>
+		<script>
+			/*
+			 * 1、在哪里改颜色
+			 * 		在初始化函数里修改
+			 * 2、怎么改颜色
+			 * 		把颜色放在一个函数里，通过传参的形式传到初始化的函数里，在用到的地方去调用一下这个函数就可以了
+			 * 
+			 */
+			
+			window.onload=function(){
+				var div1=new Drag('div1');
+				div1.init({
+					downFn:function(){
+						this.obj.style.background='yellow';
+					},
+					moveFn:function(){
+						this.obj.style.background='grey';
+					},
+					upFn:function(){
+						this.obj.style.background='black';
+					}
+				});
+				
+				var div2=new Drag('div2');
+				div2.init({
+					downFn:function(){
+						this.obj.style.background='yellow';
+					}
+				});
+				
+				var div3=new Drag('div3');
+				div3.init({
+					downFn:function(){
+						this.obj.style.background='yellow';
+					},
+					moveFn:function(){
+						this.obj.style.background='grey';
+					}
+				});
+			};
+			
+			function Drag(obj){
+				this.obj=document.getElementById(obj);
+				this.disX=0;
+				this.disY=0;
+				
+				this.settings={};		//存的是要被用户修改的内容
+			}
+			
+			//初始化函数
+			Drag.prototype.init=function(opt){
+				//把初始化要被用户修改的内容放在一个对象里，下面去调用这个对象
+				this.settings={
+					downFn:opt.downFn||function(){},		//给函数一个替补，如果用户没有传这个参数就走默认的空函数
+					moveFn:opt.moveFn||function(){},
+					upFn:opt.upFn||function(){}
+				};
+				
+				var This=this;
+				this.obj.onmousedown=function(ev){
+					This.down(ev);
+				};
+			};
+			
+			Drag.prototype.down=function(ev){
+				this.settings.downFn.call(this);
+				
+				this.disX=ev.clientX-this.obj.offsetLeft;
+				this.disY=ev.clientY-this.obj.offsetTop;
+				
+				var This=this;
+				
+				document.onmousemove=function(ev){
+					This.move(ev);
+				};
+				document.onmouseup=function(){
+					This.up();
+				};
+			};
+			
+			Drag.prototype.move=function(ev){
+				this.settings.moveFn.call(this);
+				
+				this.obj.style.left=ev.clientX-this.disX+'px';
+				this.obj.style.top=ev.clientY-this.disY+'px';
+			};
+			
+			Drag.prototype.up=function(){
+				this.settings.upFn.call(this);
+				
+				document.onmousemove=null;
+			};
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+	</body>
+</html>

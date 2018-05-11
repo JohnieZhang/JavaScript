@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			li{
+				margin:10px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li class="box"></li>
+			<li class="box"></li>
+			<li class="box"></li>
+			<li class="box"></li>
+			<li class="box"></li>
+		</ul>
+		<script>
+			/*
+			 * getElementsByClassName
+			 * 	IE9以及以上支持
+			 */
+			var boxs=document.getElementsByClassName('box');
+			console.log(boxs);
+			
+			for(var i=0;i<boxs.length;i++){
+				boxs[i].style.background='red';
+			}
+		</script>
+	</body>
+</html>

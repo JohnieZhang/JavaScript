@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * Object.is()		比较两个值是否相等，与===的结果一样，但是还是有一些区别
+			 * 	返回的结果是一个布尔值
+			 * 	区别
+			 * 		1、+0与-0比较的结果为false
+			 * 		2、NaN与NaN比较的结果为true
+			 */
+			
+			'use strict'
+			console.log(Object.is('kaivon','kaivon'));		//true
+			
+			console.log(+0===-0);			//true
+			console.log(Object.is(+0,-0));	//false
+			
+			console.log(NaN===NaN);			//false
+			console.log(Object.is(NaN,NaN));	//true
+		</script>
+	</body>
+</html>

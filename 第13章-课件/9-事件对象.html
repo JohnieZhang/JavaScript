@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * event对象
+			 * 	IE9以及以上支持
+			 * 
+			 * IE678的事件对象是window身上的一个属性
+			 */
+			document.onclick=function(ev){
+				//alert(ev);
+				//alert(window.event);
+				var ev=ev||event;
+				
+				alert(ev);
+			}
+		</script>
+	</body>
+</html>

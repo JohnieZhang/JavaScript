@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * toString
+			 * 	作用
+			 * 		把对象类型转成字符串
+			 * 	注意
+			 * 		系统对象下的这个方法都是它对应原型对象（__proto__）身上的方法，自己写的对象下的这个方法是属于Object原型身上的方法
+			 */
+			
+			var obj={
+				left:10,
+				top:20
+			}
+			
+			var arr=[1,2,3];
+			
+			function Person(name){
+				this.name=name;
+			}
+			var p1=new Person('kaivon');
+			
+			console.log(obj);			//toString在它对应的原型身上
+			console.log(arr);			//toString在它对应的原型身上
+			console.log(p1);				//toString在Object身上
+			
+			console.log(arr.toString==p1.toString);					//false
+			console.log(p1.toString==Object.prototype.toString);		//true
+			
+			
+			console.log(obj.toString());			//[object Object]
+			console.log(arr.toString());			//1,2,3
+			console.log(p1.toString());			//[object Object]
+			console.log(Person.toString());		//
+			
+			
+			//用toString做类型判断
+			var num=0;
+			var str='kaivon';
+			var b=true;
+			var n=null;
+			var u=undefined;
+			var arr1=[];
+			var obj1={};
+			var fn=function(){};
+			var d=new Date();
+			var re=new RegExp();
+			
+			console.log(Object.prototype.toString.call(num));		//[object Number]
+			console.log(Object.prototype.toString.call(str));		//[object String]
+			console.log(Object.prototype.toString.call(b));			//[object Boolean]
+			console.log(Object.prototype.toString.call(n));			//[object Null]
+			console.log(Object.prototype.toString.call(u));			//[object Undefined]
+			console.log(Object.prototype.toString.call(arr1));		//[object Array]
+			console.log(Object.prototype.toString.call(obj1));		//[object Object]
+			console.log(Object.prototype.toString.call(fn));			//[object Function]
+			console.log(Object.prototype.toString.call(d));			//[object Date]
+			console.log(Object.prototype.toString.call(re));			//[object RegExp]
+		</script>
+	</body>
+</html>

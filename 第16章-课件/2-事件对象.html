@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no" />
+		<title></title>
+		<style>
+			#box{
+				width: 200px;
+				height: 200px;
+				background: green;
+				color: #fff;
+				font-size: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			/*
+			 * touches			当前屏幕中的手指列表
+			 * 
+			 * 
+			 */
+			
+			var box=document.getElementById("box");
+			
+			//相当于mousedown
+			box.addEventListener('touchstart',function(ev){
+				//console.log(ev.touches);
+				this.innerHTML=ev.touches.length;
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 滚轮事件
+			 * 	mousewheel			IE/Chrome
+			 * 		滚动的方向		event.wheelDelta
+			 * 						上：120（正数）
+			 * 						下：-120（负数）
+			 * 
+			 * 	DOMMouseScroll		FF(必需要用addEventListener添加)
+			 * 		滚动的方向		event.detail
+			 * 						上：-3（负数）
+			 * 						下：3（正数）
+			 * 						
+			 */
+			
+			document.onmousewheel=function(ev){
+				console.log('鼠标滚动了-Chrom',ev.wheelDelta);	
+			};
+			
+			document.addEventListener('DOMMouseScroll',function(ev){
+				console.log('鼠标滚动了-FF',ev.detail);
+			});
+		</script>
+	</body>
+</html>

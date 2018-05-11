@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * const			声明一个常量，一旦声明后就不能修改了
+			 * 	1、如果声明后再去修改的话就会报错
+			 * 	2、只声明不赋值也会报错
+			 * 	3、只能先声明后使用，不会被提前解析
+			 * 	4、不能重复声明一个常量
+			 * 
+			 * 注意：const声明的对象中的属性是可以修改的
+			 */
+			'use strict'
+			
+			var a=12;
+			a='kaivon';
+			console.log(a);
+			
+			
+			const str='kaivon';
+			//str=12;		//报错
+			
+			console.log(str);
+			
+			//const b;			//报错	没有给值
+			
+			//console.log(c);	//报错	没声明就用了
+			const c=20;
+			//const c='kaivon';	//报错	重复声明了
+			
+			//声明一个对象后，可以对它里面的属性进行修改
+			const obj={
+				name:'kaivon'	
+			};
+			
+			obj.name='陈学辉';
+			console.log(obj);
+			
+		</script>
+	</body>
+</html>

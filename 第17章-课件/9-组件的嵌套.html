@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+		<style>
+			#box{
+				width: 300px;
+				height: 150px;
+				border: 5px solid #000;
+			}
+			.left{
+				width: 100px;
+				height: 150px;
+				background: green;
+				float: left;
+				color: #fff;
+			}
+			.right{
+				float: right;
+				width: 200px;
+				height: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<!--<div class="left"></div>
+			<div class="right">
+				<h3>这是一个标题</h3>
+				<p>这里是一段很长很长的文字</p>
+			</div>-->
+		</div>
+		<script type="text/babel">
+			var Img=React.createClass({
+				render:function(){
+					return (
+						<div>
+							<div className="left">这里是一个很漂亮的妹子</div>
+							<Right/>
+						</div>
+					)
+				}
+			});
+			
+			var Right=React.createClass({
+				render:function(){
+					return (
+						<div className='right'>
+							<Title con='这里是一个很大的标题'/>
+							<Text con='这里是一段很长很长的文字'/>
+						</div>
+					)
+				}
+			});
+			
+			var Title=React.createClass({
+				render:function(){
+					return (
+						<h3>{this.props.con}</h3>
+					)
+				}
+			});
+			
+			var Text=React.createClass({
+				render:function(){
+					return (
+						<p>{this.props.con}</p>
+					)
+				}
+			});
+			
+			
+			//第一个参数只能传一个组件
+			ReactDOM.render(
+				<Img/>,
+				document.getElementById('box')
+			);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * constructor
+			 * 	概念
+			 * 		每个对象身上都会有这个属性，默认指向该对象对应的构造函数
+			 * 		这个属性不是放在对象身上，放在对应的原型对象身上
+			 * 	作用
+			 * 		查看对象的构造函数
+			 * 	语法
+			 * 		对象.constructor
+			 * 	返回值
+			 * 		对象的构造函数
+			 * 
+			 * 	他可以用来做数据类型的判断
+			 */
+			
+			var obj={};
+			console.log(obj);
+			
+			
+			function Person(name){
+				this.name=name;
+			}
+			var p1=new Person('kaivon');
+			console.log(p1);
+			console.log(p1.constructor);
+			/*function Person(name){
+				this.name=name;
+			}*/
+			console.log(p1.constructor==Person);		//true
+			
+			var arr=[1,2,3];
+			console.log(arr);
+			console.log(arr.constructor==Array);		//true
+			
+			//constructor有一个作用是用来做类型判断的
+			var num=10;
+			var str='kaivon';
+			var b=false;
+			/*var nul=null;				
+			var und=undefined*/
+			var d=new Date();
+			var fn=function(){};
+			
+			console.log(num.constructor==Number);	//true
+			console.log(str.constructor==String);	//true
+			console.log(b.constructor==Boolean);		//true
+			//console.log(nul.constructor);	
+			//console.log(und.costructor);
+			console.log(d.constructor==Date)	;		//true
+			console.log(fn.constructor==Function);	//true
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 可以把表达式放在中括号里作为属性名
+			 */
+			'use strict'
+			
+			let key='interest';
+			let obj={
+				name:'kaivon',
+				[key]:'打豆豆',
+				['show'](){
+					console.log(this.name);
+				}
+			}
+			console.log(obj);
+		</script>
+	</body>
+</html>

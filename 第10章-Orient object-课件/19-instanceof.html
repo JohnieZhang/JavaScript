@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * instanceof
+			 * 	作用
+			 * 		二元运算符，用来查找对象与构造函数在原型链上有没有关系
+			 * 	语法
+			 * 		对象 instanceof 构造函数
+			 * 	返回值
+			 * 		true			有关系
+			 * 		false		没关系
+			 * 
+			 * 	可以用来做类型判断
+			 */
+			function Person(name){
+				this.name=name;
+			}
+			var p1=new Person('kaivon');
+			
+			console.log(p1 instanceof Person);		//true
+			console.log(p1 instanceof Array);		//false
+			console.log(p1 instanceof Object);		//true
+			
+			var arr=[1,2,3];
+			var str='kaivon';
+			console.log(arr instanceof Array);		//true
+			console.log(str instanceof Array);		//false
+		</script>
+	</body>
+</html>

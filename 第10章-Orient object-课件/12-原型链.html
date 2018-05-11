@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 原型链
+			 * 	对象与原型之间的关系（链接）
+			 * 
+			 * 原型链查找规则
+			 * 	当我们调用一个对象身上的属性或者方法的时候，它就会有一个查找规则
+			 * 		1、首先会在自己身上去找，如果有的话就用自己的
+			 * 		2、如果没有的话，它就在该对象的__proto__下查找，因为__proto__这个属性是指向对应的构造函数身上的protytpe，把它查找的时候找的就是构造函数的原型
+			 * 		3、如果原型身上也没有的话，那它会继续往外面找，直到找到最顶层的Object身上的prototype
+			 */
+			
+			function Person(){
+				this.name='kaivon';
+				this.age=20;
+			}
+			Person.prototype.age=22;
+			var p1=new Person();
+			console.log(p1.age);//20。自身与构造函数身上都有age属性，优先使用自己身上的age属性   
+			console.log(p1);
+
+
+			/*function Person(){
+				this.name='kaivon';
+			}
+			Person.prototype.age=22;
+			var p1=new Person();			
+			console.log(p1.age);//22.	由于自己身上没有age属性，而构造函数的prototype上有，所以使用构造函数身上的*/
+
+
+			/*function Person(){
+				this.name='kaivon';
+			}
+			Object.prototype.age = 22;
+			var p1=new Person();	
+			console.log(p1.age);//22.自身与构造函数身上没有age属性，但是顶层对象Objext身上有，使用Oobject身上的*/
+
+			/*function Person(){
+				this.name='kaivon';
+			}
+			var p1=new Person();	
+			console.log(p1.age);//undefined.由于自身、构造函数以及顶层对象Obisect身上都没有age属性，所以为undefined。*/
+
+		</script>
+	</body>
+</html>

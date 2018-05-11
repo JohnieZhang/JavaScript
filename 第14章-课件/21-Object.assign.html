@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * Object.assign()			将一个对象身上的属性复制到另一个对象身上
+			 * 	1、至少需要两个参数
+			 * 	2、第一个参数为合并后的对象
+			 * 	3、从第二个参数开始往后就是所有要合并的对象
+			 * 	4、如果有同名的属性，后面会把前面覆盖了
+			 * 	5、如果有嵌套的对象，是覆盖并不是添加
+			 * 	
+			 */
+			
+			'use strict'
+			var obj1={a:1};
+			var obj2={b:2};
+			var obj3={a:4,c:3};
+			
+			Object.assign(obj1,obj2,obj3);
+			console.log(obj1);
+			
+			const merge=(target,...souce)=>{
+				Object.assign(target,...souce);
+				return target;
+			}
+			console.log(merge(obj1,obj2,obj3));		//Object {a: 4, b: 2, c: 3}
+			
+			
+			var obj4={
+				d:{
+					e:5
+				}
+			}
+			var obj5={
+				d:{
+					f:6
+				}
+			}
+			
+			console.log(merge({},obj4,obj5));
+		</script>
+	</body>
+</html>

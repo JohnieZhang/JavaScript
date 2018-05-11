@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			//工厂方式
+			function createPerson(name,age){
+				var obj=new Object();
+				
+				obj.name=name;
+				obj.age=age;
+				
+				obj.say=function(){
+					console.log('我叫'+obj.name);
+				}
+				
+				return obj;//将创建好的对象返回出去。以为函数必须有返回值，函数的返回值由return后面跟的东西决定
+			}
+			
+			var p1=createPerson('老王',30);
+			var p2=createPerson('小王',18);
+			
+			//console.log(p2);
+			
+			p1.say();
+			p2.say();
+		</script>
+	</body>
+</html>

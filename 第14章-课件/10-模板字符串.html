@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="text">
+			<h1></h1>
+			<p></p>
+		</div>
+		
+		<script>
+			/*
+			 * 模板字符串：字符串的拼接方式
+			 * 	1、字符串需要用一对反引号包起来，它可以定义多行字符串，只用一对反引号
+			 * 	2、要拼进去的数据需要放在${}里面
+			 * 	3、大括号里还可以进行运算
+			 * 	4、大括号里还可以调用函数
+			 * 	
+			 */
+			'use strict'
+			var obj={
+				title:'心情',
+				content:'今天很爽，吃了饭，睡了觉，还打了豆豆。'
+			}
+			var text=document.getElementById("text");
+			//text.innerHTML='<h1>'+obj.title+'</h1><p>'+obj.content+'</p>';
+			
+			function fn(){
+				return '那么问题来了，豆豆爽么？';
+			}
+			
+			var str1=`<h1>${obj.title}</h1>
+						<p>${obj.content}</p>`;
+			
+			var str2=`<h1>${obj.title+'+1'}</h1>
+						<p>${obj.content}</p>`;
+			
+			var str3=`<h1>${obj.title+'+1'}</h1>
+						<p>${obj.content+fn()}</p>`;
+						
+			//text.innerHTML=str1;
+			//text.innerHTML=str2;
+			text.innerHTML=str3;
+			
+		</script>
+	</body>
+</html>

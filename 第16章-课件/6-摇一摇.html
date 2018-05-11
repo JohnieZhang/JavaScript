@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no" />
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var lastRange=0;		//上一次摇晃的幅度
+			var isShake=false;		//决定用户到底有没有大幅度摇晃
+			
+			window.addEventListener('devicemotion',function(ev){
+				var motion=ev.accelerationIncludingGravity;
+				var x=Math.abs(motion.x);
+				var y=Math.abs(motion.y);
+				var z=Math.abs(motion.z);
+				
+				var range=x+y+z;			//当前摇晃的幅度
+				if(range-lastRange>100){
+					//这个条件成立说明用户现在已经在大幅度摇晃
+					isShake=true;
+				}
+				
+				if(isShake && range<50){	
+					//这个条件成立，说明用户摇晃的幅度很小了就要停了
+					alert('摇一摇了');
+					isShake=false;
+				}
+			});
+		</script>
+	</body>
+</html>

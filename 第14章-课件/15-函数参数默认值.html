@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			'use strict'
+			function fn(a,b){
+				b=b||'kaivon';
+				console.log(a,b);
+			}
+			fn('hello');			//hello kaivon
+			fn('hello','moto');	//hello moto
+			
+			//参数变量是默认声明的，不能用let或者const再次声明
+			function fn2(a=20,b=10){
+				//console.log(a,b);		//20 10
+				//let a=12;				//报错
+				console.log(a+b);
+			}
+			fn2();			//30
+			fn2(23,45);		//68
+		</script>
+	</body>
+</html>

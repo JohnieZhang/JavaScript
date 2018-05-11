@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<!--
+			React中可以把每个功能都定义成组件，然后组件会像普通的html标签一样，插入到页面中
+			创建组件
+				React.createClass()	
+				注意：
+					1、存组件的变量名首字母要大写
+					2、render的return里只能出现一个顶层标签
+			
+			插入组件
+				把定义好的组件放在尖括号里，就形成了一个标签，就能以标签的形式插入到页面中
+				插入方法：
+					1、<组件名/>
+					2、<组件名></组件名>
+		-->
+		<script type="text/babel">
+			//创建组件.格式是固定的
+			var Person=React.createClass({
+				render:function(){
+					return (
+						//<h1>kaivon</h1>
+						//<h2>陈学辉</h2>
+						<div>
+							<h1>kaivon</h1>
+							<h2>陈学辉</h2>
+							<h3>18</h3>
+						</div>
+					)
+				}
+			});
+			
+			//添加组件，ReactDOM.render不仅可以输出html结构，还可以输出组件
+			ReactDOM.render(
+				<Person/>,		//这里可以写单标签，也可以写双标签
+				document.getElementById('box')
+			);
+		</script>
+	</body>
+</html>

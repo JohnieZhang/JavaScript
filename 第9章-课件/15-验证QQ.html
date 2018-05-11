@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * QQ号规则
+			 * 	1、全是数字
+			 * 	2、不能以0开头
+			 * 	3、数字的个数5-12
+			 * 
+			 * 	^	他出现在中括号里代表排除的意思，在中括号的外面表示字符串开始的位置
+			 * 	$	字符串结束的位置
+			 */
+			
+			window.onload=function(){
+				var input=document.querySelector("input");
+				var button=document.querySelector("button");
+				
+				button.onclick=function(){
+					var str=input.value;
+					//var re=/[1-9]\d{4,11}/;		//用户输入的内容是12345a就会出错
+					var re=/^[1-9]\d{4,11}$/;
+					
+					if(re.test(str)){
+						alert('是QQ号');
+					}else{
+						alert('不是QQ号');
+					}
+					
+				};
+			};
+		</script>
+		
+		<input type="text" />
+		<button>验证</button>
+	</body>
+</html>

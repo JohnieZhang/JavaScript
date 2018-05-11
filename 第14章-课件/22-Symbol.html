@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * Symbol		新增的第7种数据类型，表示独一无二。用来做为属性名，能保证不会与其它的属性名冲突
+			 * 	1、它是通过Symbol函数生成的
+			 * 	2、它的前面不能用new，因为它生成的是一个原始类型的数据，不是对象
+			 * 	3、它可以接收一个参数，为了便于区分。即使长得一样它们也不相同
+			 * 	4、它不能与其它的值进行运算，没有隐式转换
+			 * 	5、它的值可以被转换成布尔值或者字符串，不能转成数字
+			 */
+			
+			
+			'use strict'
+			let s=Symbol();
+			console.log(s);				//Symbol()
+			console.log(typeof s);		//symbol
+			//console.log(new Symbol());	//报错
+			
+			var s1=Symbol('kaivon');
+			var s2=Symbol('kaivon');
+			console.log(s1,s2,s1==s2);	//Symbol(kaivon) Symbol(kaivon) false
+			
+			//console.log(s1+'陈学辉');	//报错
+			
+			console.log(String(s1));		//Symbol(kaivon)
+			console.log(Boolean(s1));	//true
+			//console.log(Number(s1));		//报错，不能转成数字
+			
+			//用法
+			var mySymbol=Symbol('j');
+			var obj={
+				[mySymbol]:'kaivon'
+			}
+			console.log(obj);
+		</script>
+	</body>
+</html>

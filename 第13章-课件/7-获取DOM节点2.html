@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p></p>
+		<div id="box">
+			<span class="inner"></span>
+			<strong></strong>
+		</div>
+		<ul></ul>
+		<script>
+			/*
+			 * 获取DOM节点
+			 * 	firstElementChild
+			 * 	lastElementChild
+			 * 	nextElementSibling
+			 * 	previousElementSibling
+			 * 
+			 * IE9以及以上支持
+			 */
+			
+			var box=document.getElementById("box");
+			//alert(box.firstElementChild.nodeName);
+			//alert(box.lastElementChild.nodeName);
+			//alert(box.nextElementSibling.nodeName);
+			alert(box.previousElementSibling.nodeName);
+		</script>
+	</body>
+</html>

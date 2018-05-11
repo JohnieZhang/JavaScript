@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 箭头函数
+			 * 	语法：
+			 * 		1、function用var、let、const来表示
+			 * 		2、参数要写在第一个等号后面
+			 * 			1、如果没有参数，需要写一对空的小括号
+			 * 			2、只有一个参数，那就直接写，不用加括号
+			 * 			3、参数有多个，需要加一个小括号，参数用逗号隔开
+			 * 		3、函数的主体内容是放在箭头后面，如果语句只有一条，那就直接写。如果语句有多条，需要把它们放在一对大括号里
+			 * 	注意：
+			 * 		1、函数体内的this对象就是定义函数时所在的对象，不是调用函数时候的对象
+			 * 		2、不能当作构造函数来用，不能使用new
+			 * 		3、函数内不能使用arguments对象，如果要用的话就用reset参数来代替
+			 * 	
+			 */
+			
+			'use strict'
+			/*function fn1(){
+				console.log('kaivon');
+			}
+			fn1();*/
+			
+			var fn1=()=>console.log('kaivon');
+			fn1();
+			
+			
+			let fn2=a=>console.log(a);
+			fn2('陈学辉');			//陈学辉
+			
+			
+			const fn3=(a,b)=>{
+				let result=a+b;
+				console.log(result);
+			}
+			fn3(1,2);		//3
+		</script>
+	</body>
+</html>

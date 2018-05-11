@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			/*
+			 * 获取计算后的样式
+			 * 	getComputedStyle
+			 * 		IE9以及以上支持
+			 * 	
+			 * 	currentStyle
+			 * 		所有IE都支持，它是一个属性
+			 */
+			var box=document.getElementById("box");
+			//alert(getComputedStyle(box).width);
+			//alert(box.currentStyle.width);
+			
+			
+			function getStyle(obj,attr){
+				if(obj.currentStyle){
+					return obj.currentStyle[attr];
+				}else{
+					return getComputedStyle(obj)[attr];
+				}
+			}
+			
+			alert(getStyle(box,'height'));
+		</script>
+	</body>
+</html>

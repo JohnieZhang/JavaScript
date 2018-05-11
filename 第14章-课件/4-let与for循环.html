@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>red</li>
+			<li>blue</li>
+			<li>green</li>
+			<li>yellow</li>
+		</ul>
+		
+		<script>
+			'use strict'
+			var lis=document.querySelectorAll("li");
+			/*for(var i=0;i<lis.length;i++){
+				lis[i].onclick=function(){
+					alert(i);
+				}
+				
+				(function(i){
+					lis[i].onclick=function(){
+						alert(i);
+					}
+				})(i);
+			}*/
+			
+			for(let i=0;i<lis.length;i++){
+				lis[i].onclick=function(){
+					alert(i);
+				}
+			}
+			
+			/*{
+				1
+				lis[1].onclick=function(){
+					alert(1);
+				}
+			}
+			
+			{
+				2
+				lis[2].onclick=function(){
+					alert(2);
+				}
+			}*/
+			
+			
+		</script>
+	</body>
+</html>

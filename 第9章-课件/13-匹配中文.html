@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * [\u4e00-\u9fa5]		中文的区间，包含所有的汉字
+			 * 
+			 */
+			
+			var str='kaivon海棠学院陈学辉1+';
+			var re=/[\u4e00-\u9fa5]/g;
+			console.log(str.match(re));
+			
+			console.log(decodeURI('\u4e00'));		//一
+			console.log(decodeURI('\u9fa5'));		//龥(yu)
+			console.log(encodeURI('一'));
+		</script>
+	</body>
+</html>

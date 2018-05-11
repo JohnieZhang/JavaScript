@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * \d		数字
+			 * \D		除数字以外的任意字符
+			 */
+			var d1='1970-02-01';
+			var d2='1970+++++02+++++01';
+			var d3='1970////////02////////01';
+			var d4='1970+---02+-----01';
+			var d=['年','月','日'];
+			
+			//正则匹配数字生成年月日
+			var re=/\d+/g;
+			var result=d4.match(re);		//["1970", "02", "01"]
+			var newDate='';
+			
+			
+			for(var i=0;i<d.length;i++){
+				newDate+=result[i]+d[i];
+			}
+			
+			console.log(newDate);
+			
+			
+			//匹配非数字
+			var re1=/\D+/g;
+			console.log(d1.match(re1));			//["-", "-"]
+			console.log(d2.match(re1));			//["+++++", "+++++"]
+			console.log(d3.match(re1));			//["////////", "////////"]
+			console.log(d4.match(re1));			//["+---", "+-----"]
+			
+			
+			//格式化日期
+			//规则：一堆数字一堆非数字一堆数字一堆非数字一堆数字
+			
+			var re2=/(\d+)\D+(\d+)\D+(\d+)/g;
+			
+			//console.log(re2.test(d2))		true
+			
+			var str2=d4.replace(re2,function($0,$1,$2,$3){
+				console.log($1);		//1970
+				console.log($2);		//02
+				console.log($3);		//01
+				
+				return $1+'年'+$2+'月'+$3+'日';
+			});
+			
+			console.log(str2);
+		</script>
+	</body>
+</html>

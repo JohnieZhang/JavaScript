@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/react.js"></script>
+		<script src="js/react-dom.js"></script>
+		<script src="js/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<!--
+			组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求
+			
+			
+			只会提示警告，但是内容依然可以出来
+		-->
+		<script type="text/babel">
+			var person={
+				name:'kaivon',
+				age:18,
+				sex:'男'
+			}
+			
+			var Person=React.createClass({
+				render:function(){
+					return (
+						<div>
+							<h1>{this.props.name}</h1>
+							<h2>{this.props.age}</h2>
+							<h3>{this.props.sex}</h3>
+						</div>
+					)
+				},
+				propTypes:{
+					name:React.PropTypes.string,
+					age:React.PropTypes.number,
+					sex:React.PropTypes.string
+				}
+			});
+			
+			ReactDOM.render(
+				<Person {...person} />,
+				document.getElementById('box')
+			);
+		</script>
+	</body>
+</html>

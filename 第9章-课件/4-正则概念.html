@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 正则表达式（规则表达式）
+			 * 	用一些特殊的符号（字符）去代表一些特定的内容，用来查找与匹配符合规则的字符串
+			 * 
+			 * 定义正则表达式
+			 * 	直接量定义			/正则表达式/[修饰符]
+			 * 	对象定义				new RegExp(字符串，[修饰符])				
+			 */
+			
+			var str='kaivon';
+			var re=/k/;
+			var re2=new RegExp('kaivon');
+			
+			console.log(re);
+			console.log(re2);
+			
+			var str2='kai/von';
+			var re3=/i\//;		//注意：正则在匹配/的时候会有问题，需要转义
+			
+			console.log(re3);
+			
+		</script>
+	</body>
+</html>

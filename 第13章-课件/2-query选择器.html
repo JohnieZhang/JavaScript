@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			li{
+				margin:10px;
+			}
+			#wrap{
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li class="box"></li>
+			<li class="box"></li>
+			<li class="box"></li>
+			<li class="box"></li>
+			<li class="box"></li>
+		</ul>
+		<div id="wrap"></div>
+		<script>
+			/*
+			 * querySelector/querySelectorAll
+			 * 	IE8以及以上支持
+			 */
+			var wrap=document.querySelector("#wrap");
+			wrap.style.background='red';
+			
+			var boxs=document.querySelectorAll("li");
+			for(var i=0;i<boxs.length;i++){
+				boxs[i].style.background='green';
+			}
+		</script>
+	</body>
+</html>

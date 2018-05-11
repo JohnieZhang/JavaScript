@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * match
+			 * 	作用
+			 * 		匹配指定的字符串或者正则，把匹配到的结果放到一个数组中
+			 * 	语法
+			 * 		字符串.match(字符串或者正则)
+			 * 	参数
+			 * 		字符串或者正则
+			 * 	返回值
+			 * 		找到后把结果放在数组中并返回
+			 * 		没找到返回null
+			 * 
+			 * 		1、如果不带g修饰符，只会匹配一个结果，并且给找到的数组添加index与input属性
+			 * 			index:找到字符对应的位置
+			 * 			input:原字符串（从哪个字符串上找）
+			 * 		2、如果带g修饰符，则为全局匹配，结果里放的是找到匹配的字符
+			 * 
+			 * 	注意：
+			 * 		匹配成功后，就不会再接着往下找了
+			 * 	
+			 * 
+			 * 修饰符（放在第二个斜杠的后面）
+			 * 		i:忽略大小写
+			 * 		g:全局匹配
+			 * 
+			 * 
+			 * 量词：匹配不确定的数量
+			 * 	+	至少出现一次，>=1
+			 */
+			
+			var str='ka2323i4kai234von545vao56454n';
+			var re=/a/;
+			
+			console.dir(str.match(re));		//["a", index: 1, input: "ka2323i4kai234von545vo56454n"]
+			console.log(str.match('k'));		//["k", index: 0, input: "ka2323i4kai234von545vo56454n"]
+			console.log(str.match('b'));		//null
+			
+			var re2=/a/g;		//有g修饰符后就会一直往后面找，直到找到所有
+			var re3=/\d+/g;		//有量词，所以找到的字符数量不是单个了，只有要连着的数字都会合到一起被找到
+			
+			console.log(str.match(re2));		//["a", "a", "a"]
+			console.log(str.match(re3));		//["2323", "4", "234", "545", "56454"]
+		</script>
+	</body>
+</html>
