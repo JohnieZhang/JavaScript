@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * constructor
+			 * 	概念
+			 * 		每个对象身上都会有这个属性，默认指向该对象对应的构造函数
+			 * 		这个属性不是放在对象身上，放在对应的原型对象身上
+			 * 	作用
+			 * 		查看对象的构造函数
+			 * 	语法
+			 * 		对象.constructor
+			 * 	返回值
+			 * 		对象的构造函数
+			 * 	注意：
+			 * 		这个属性是可以被修改的
+			 */
+			
+			function Person(name){
+				this.name=name;
+			}
+			var p1=new Person('kaivon');
+			console.log(p1);
+			console.log(p1.constructor==Person);		//true
+			
+			p1.constructor=Array;
+			console.log(p1.constructor==Array);		//true
+			
+			
+			
+			function Coder(name){
+				this.name=name;
+			}
+			/**Coder.prototype.age=18;
+			Coder.prototype.sex='男';*/
+			
+			Coder.prototype={
+				constructor:Coder,
+				age:18,
+				sex:'男'
+			};
+			
+			var c1=new Coder('kaivon');
+			console.log(c1.age);			//18
+			
+			console.log(c1.constructor);
+		</script>
+	</body>
+</html>

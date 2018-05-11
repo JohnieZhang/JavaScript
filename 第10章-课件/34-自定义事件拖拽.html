@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#div1{
+				background: red;
+			}
+			#div2{
+				background: green;
+				left: 100px;
+			}
+			#div3{
+				background: blue;
+				left: 200px;
+			}
+		</style>
+		<script>
+			/*
+			 * 1、在哪里改颜色
+			 * 		在初始化函数里修改
+			 * 2、怎么改颜色
+			 * 		把颜色放在一个函数里，通过传参的形式传到初始化的函数里，在用到的地方去调用一下这个函数就可以了
+			 * 
+			 */
+			
+			window.onload=function(){
+				var div1=new Drag();
+				div1.init({
+					id:'div1'
+				});
+				
+				customEvent(div1,'按下',function(){
+					this.obj.style.background='yellow';
+				});
+				customEvent(div1,'移动',function(){
+					this.obj.style.background='blue';
+				});
+				customEvent(div1,'抬起',function(){
+					this.obj.style.background='green';
+				});
+			};
+			
+			function Drag(obj){
+				this.disX=0;
+				this.disY=0;
+				
+				this.settings={
+					id:'',		//这个属性是必传的
+					downFn:function(){},	
+					moveFn:function(){},
+					upFn:function(){}
+				};
+			}
+			
+			//初始化函数
+			Drag.prototype.init=function(opt){
+				for(var attr in opt){
+					if(this.settings.hasOwnProperty(attr)){
+						this.settings[attr]=opt[attr];
+					}
+				}
+				
+				this.obj=document.getElementById(this.settings.id);
+				
+				var This=this;
+				this.obj.onmousedown=function(ev){
+					This.down(ev);
+				};
+			};
+			
+			Drag.prototype.down=function(ev){
+				trigger(this,'按下');
+				
+				this.disX=ev.clientX-this.obj.offsetLeft;
+				this.disY=ev.clientY-this.obj.offsetTop;
+				
+				var This=this;
+				
+				document.onmousemove=function(ev){
+					This.move(ev);
+				};
+				document.onmouseup=function(){
+					This.up();
+				};
+			};
+			
+			Drag.prototype.move=function(ev){
+				trigger(this,'移动');
+				
+				this.obj.style.left=ev.clientX-this.disX+'px';
+				this.obj.style.top=ev.clientY-this.disY+'px';
+			};
+			
+			Drag.prototype.up=function(){
+				trigger(this,'抬起');
+				
+				document.onmousemove=null;
+			};
+			
+			
+			
+			//添加自定义事件
+			function customEvent(obj,eventName,fn){
+				obj.events=obj.events||{};	
+				obj.events[eventName]=obj.events[eventName]||[];	
+				obj.events[eventName].push(fn);
+			}
+			
+			//触发自定义事件
+			function trigger(obj,eventName){
+				if(obj.events[eventName]){
+					for(var i=0;i<obj.events[eventName].length;i++){
+						obj.events[eventName][i].call(obj);
+					}
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<div id="div1"></div>
+	</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.bar{
+				position: relative;
+				height: 30px;
+			}
+			.line{
+				height: 2px;
+				background: #ccc;
+				position: absolute;
+				left: 0;
+				top: 50%;
+				margin-top: -1px;
+				width: 100%;
+			}
+			.slide{
+				width: 30px;
+				height: 100%;
+				background: #DAA520;
+				position: absolute;
+				left: 0;
+				top: 0;
+				cursor: pointer;
+			}
+		</style>
+		<script type="text/javascript" src="js/events.js"></script>
+		<script>
+			window.onload=function(){
+				var slide=new SlideBar();
+				slide.init({
+					id:'box',
+					nowValue:50		//在new出来后可以设置，设置完了，要让滑块显示在对应的位置上
+				});
+				
+				slide.on('开始',function(){
+					console.log('注意：我开始了');
+				});
+				slide.on('滑动',function(){
+					console.log(slide.getValue());
+				});
+				slide.on('抬起',function(){
+					console.log('抬起了');
+				});
+				slide.on('结束',function(){
+					console.log('结束了');
+				});
+				slide.on('点击',function(){
+					console.log('点击了');
+				});
+			};
+			
+			function SlideBar(){
+				this.settings={
+					id:'',
+					nowValue:50		//这个代表滑块走的距离（百分比）
+				}
+			};
+			SlideBar.prototype={
+				constructor:SlideBar,
+				init:function(opt){
+					for(var attr in this.settings){
+						if(this.settings.hasOwnProperty(attr)){
+							this.settings[attr]=opt[attr];
+						}
+					}
+					
+					//当初始化完了以后，首先应该先创建dom
+					this.createDom();
+				},
+				createDom:function(){
+					this.wrap=document.getElementById(this.settings.id);
+					this.bar=document.createElement("div");
+					this.bar.className='bar';
+					
+					this.line=document.createElement("div");
+					this.line.className='line';
+					
+					this.slide=document.createElement("div");
+					this.slide.className='slide';
+					this.slide.style.left=this.settings.nowValue+'%';
+					
+					this.bar.appendChild(this.line);
+					this.bar.appendChild(this.slide);
+					this.wrap.appendChild(this.bar);
+					
+					
+					var This=this;
+					this.drag();			//结构加载完成以后，让他能够拖拽
+					this.bar.onclick=function(ev){		//结构加载完成以后，就可以点击了
+						This.dragClick(ev);
+					};
+					
+				},
+				drag:function(){
+					var This=this;
+					this.slide.onmousedown=function(ev){
+						This.dragDown(ev);
+						
+						document.onmousemove=function(ev){
+							This.dragMove(ev);
+						}
+						document.onmouseup=function(){
+							This.dragUp();
+						}
+						
+						ev.cancelBubble=true;
+						return false;
+					};
+				},
+				dragDown:function(ev){
+					this.dis=ev.clientX-this.slide.offsetLeft;
+					
+					$(this.slide).trigger('开始');		//调用自定义事件
+					
+					this.endNum=0;	//保证结束事件只执行一次
+				},
+				dragMove:function(ev){
+					this.l=ev.clientX-this.dis;
+					
+					if(this.l<0){
+						this.l=0;
+					}else if(this.l>this.bar.offsetWidth-this.slide.offsetWidth){
+						this.l=this.bar.offsetWidth-this.slide.offsetWidth;
+					}
+					
+					//在这里修改nowValue的值
+					this.nowValue=this.l/(this.bar.offsetWidth-this.slide.offsetWidth)*100;
+					
+					this.slide.style.left=this.l+'px';
+					
+					
+					//在这个地方执行结束自定义事件
+					if(this.nowValue==100){
+						//当this.nowValue为100的时候，说明现在已经拖到了最后，也就是拖拽结束了
+						this.endNum++;
+						
+						if(this.endNum==1){
+							$(this.slide).trigger('结束');
+						}
+					}
+					
+					
+					$(this.slide).trigger('滑动');		//调用自定义事件
+				},
+				dragUp:function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+					
+					$(this.slide).trigger('抬起');
+				},
+				dragClick:function(ev){
+					var clickPos=ev.clientX-this.bar.offsetLeft;		//这个值是鼠标点击的位置
+					//这个值是鼠标点击的位置占整个位置的百分比
+					var pec=clickPos/this.bar.offsetWidth;
+					
+					this.setValue(pec*100);
+					
+					$(this.slide).trigger('点击');		//调用自定义事件
+				},
+				getValue:function(){
+					//这个方法是用来获取当前走的距离的百分比
+					return this.nowValue;
+				},
+				setValue:function(value){
+					//这个方法是用来设置滑块的位置的，参数是百分比
+					this.slide.style.left=value+'%';
+					this.slide.style.left=this.slide.offsetLeft-this.slide.offsetWidth/2+'px';
+				},
+				on:function(type,listener){
+					//这个方法就是用来添加自定义事件，是个固定格式
+					$(this.slide).on(type,listener);
+				}
+			};
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<!--<div class="bar">
+			<div class="line"></div>
+			<div class="slide"></div>
+		</div>-->
+	</body>
+</html>

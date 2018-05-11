@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 构造函数
+			 * 	创建并初始化对象的函数，并且需要用new来调用函数，不用new调用的话与普通的函数就没有区别
+			 * 
+			 * Date()		new Date()
+			 * Array()		new Array()
+			 * 
+			 * 通过构造函数new出来的对象叫实例，创造对象的过程叫实例化
+			 * 
+			 */
+			
+			function Person(name,age){
+				/*
+				 * 1、创建一个空对象
+				 * 		var obj=new Object;
+				 * 2、把this指向创建的对象
+				 * 		this=obj
+				 */
+				
+				
+				this.name=name;
+				this.age=age;
+				
+				this.say=function(){
+					console.log('我叫'+this.name);
+				};
+				
+				/*
+				 * 3、函数执行完毕后，返回创建的对象
+				 * 		return obj;
+				 */
+			}
+			
+			var p1=new Person('老王',30);		//一个实例
+			p1.say();
+			
+			var p2=new Person('小王',18);		//一个实例
+			p2.say();
+		</script>
+	</body>
+</html>

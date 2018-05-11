@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * call
+			 * 	作用
+			 * 		调用函数并且改变this的指向
+			 * 	语法
+			 * 		函数名.call(thisArg,arg1,arg2...)
+			 * 	参数
+			 * 		thisArg			函数中this指向的值(用call调用函数后希望this指向的那个值)
+			 * 		arg1,arg2...		从call里的第二个参数开始，都是真正函数里的参数
+			 * 	返回值
+			 * 		undefined。因为函数的返回值为return决定，而用call调用函数时没有return。所以返回值为undefined
+			 * 
+			 * 	注意：thisArg的值为null或者undefined的时候，this是指向window
+			 */
+			
+			function fn(){
+				console.log(this);
+			}
+			
+			fn();			//window
+			
+			
+			fn.call(1);				//this指向数字
+			fn.call('kaivon');		//this指向字符串
+			fn.call('true');			//this指向布尔值
+			fn.call([1,2,3]);		//this指向数组
+			fn.call({});				//this指向对象
+			fn.call(null);			//this指向window
+			fn.call(undefined);		//this指向window
+			
+			
+			function fn1(name,age){
+				console.log(this,name,age);
+			}
+			fn1.call(1,'kaivon',18);
+			fn1.call({a:10,b:20},'陈学辉',18);
+		</script>
+	</body>
+</html>

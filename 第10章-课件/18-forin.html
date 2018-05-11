@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var obj={
+				left:100,
+				top:200
+			}
+			
+			for(var attr in obj){
+				console.log(attr,obj[attr]);
+			}
+			
+			var arr=[1,2,3];
+			arr.name='kaivon';
+			//console.log(arr);
+			
+			Array.prototype.age=20;					//通过原型的方式添加的属性用for in也可以遍历出来
+			Array.prototype.constructor=Object;		//constructor属性是不能被for in遍历出来的
+			
+			for(var attr in arr){
+				console.log(attr,arr[attr]);
+			}
+			
+			
+			//如果只想遍历自己身上的属性
+			for(var attr in arr){
+				if(arr.hasOwnProperty(attr)){
+					console.log(attr,arr[attr]);		//通过原型方式添加的属性在这里是遍历不出来的
+				}
+			}
+			
+		</script>
+	</body>
+</html>

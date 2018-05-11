@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 原型	prototype
+			 * 	概念
+			 * 		函数身上的属性，每一个函数身上都有这个属性，它的值是一个对象
+			 * 	用途
+			 * 		它身上可以放属性与方法，如果与构造函数相结合的话，通过构造函数创建的对象就会具有它身上的属性与方法
+			 * 		对象是通过构造函数创建的，那prototype就是这个对象的原型对象
+			 * 		建议把一些公用的属性或者方法都放到构造函数的原型身上
+			 * 	
+			 */
+			function fn(){
+				console.log(1);
+			}
+			//console.log(fn.prototype);
+			
+			
+			function Person(name,age){
+				this.name=name;
+				this.age=age;
+			}
+			
+			Person.prototype.sex='男';
+			Person.prototype.say=function(){
+				console.log('我叫'+this.name);
+			};
+			
+			
+			var p1=new Person('老王',30);		//一个实例
+			var p2=new Person('小王',18);		//一个实例
+			
+			/*console.log(p1.sex);
+			console.log(p2.sex);*/
+			
+			p1.say();
+			p2.say();
+			
+			console.log(p1.say===p2.say);		//true
+			
+			
+			/*console.log(Array.prototype);
+			Array.prototype.kaivon=function(){
+				console.log('kaivon');
+			}
+			Array.prototype.push=function(){
+				console.log('push');
+			}
+			var arr=[1,2];
+			arr.kaivon();
+			arr.push(3);
+			console.log(arr);*/
+			
+		</script>
+	</body>
+</html>

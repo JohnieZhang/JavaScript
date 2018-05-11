@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var obj={a:10,b:20};
+			//var obj2=obj;		//这样复制是复制了引用地址，不可以
+			var obj={
+				a:10,
+				b:{
+					c:22
+				},
+				d:[1,2,3],
+				e:function(){
+					console.log(1);
+				}
+			};
+			
+			//浅拷贝(如果对象数据里某个数据的类型也为对象的话，这种方法就不适用了)（改变拷贝后的对象，原对象也会改变）
+			function copy(obj){
+				var newObj={}; //用于存储copy到的属性
+				
+				for(var attr in obj){
+					newObj[attr]=obj[attr];
+				}
+				
+				return newObj;
+			}
+			
+			var obj3=copy(obj);
+			obj3.a=15;
+			console.log(obj3);			//{a: 15, b: 20}
+			console.log(obj);			//{a: 10, b: 20}
+			
+			
+			/*var obj4=copy(obj);
+			obj4.b.c=30;
+			console.log(obj4);
+			console.log(obj);*/
+			
+			
+			//深拷贝
+			function deepCopy(obj){
+				//给一个跳出去的条件，这个条件表示当传进来的参数不是对象的时候，就不需要递归了
+				if(typeof obj!='object'){
+					return obj;
+				}
+				
+				//如果要复制的对象里有个属性的值是数组，那复制的结果就必需还是数组
+				if(obj instanceof Array){
+					var newObj=[];
+				}else{
+					var newObj={};
+				}
+				
+				for(var attr in obj){
+					newObj[attr]=deepCopy(obj[attr])
+				}
+				
+				return newObj;
+			}
+			var obj5=deepCopy(obj);
+			obj5.b.c=30;
+			obj5.d.push(4);
+			obj5.e=function(){
+				console.log(2);
+			}
+			console.log(obj5);
+			console.log(obj);
+			
+			obj5.e();		//2
+			obj.e();			//1	它身上的函数没有被改
+		</script>
+	</body>
+</html>

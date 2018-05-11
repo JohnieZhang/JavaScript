@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 创建对象的方法
+			 * 	1、{}			字面量创建对象
+			 * 	2、new Object()	
+			 * 
+			 * 创建完的对象有两个特点
+			 * 	1、添加属性
+			 * 		描述对象的特征
+			 * 		属性的值为非函数的任意数据类型
+			 * 	2、添加方法
+			 * 		实现对象的一些功能
+			 * 		方法的值为函数
+			 */
+			
+			//第一种创建对象的方法
+			var person={
+				name:'老王',
+				age:30,
+				sing:function(){
+					console.log('五环之歌');
+				}
+			};
+			
+			//console.log(person);
+			person.height='180CM';
+			person.play=function(){
+				console.log('打飞机');
+			};
+			
+			//console.log(person);
+			
+			
+			//第二种创建对象的方法
+			var person2=new Object();
+			person2.name='小王';
+			person2.age=18;
+			person2.play=function(){
+				console.log('打小飞机');
+			};
+			
+			//console.log(person2)
+			
+		</script>
+	</body>
+</html>
